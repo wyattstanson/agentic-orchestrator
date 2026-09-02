@@ -1,0 +1,27 @@
+# Core
+pydantic>=2.7
+pydantic-settings>=2.3
+python-dotenv>=1.0
+
+# Orchestration
+langgraph>=0.2.0
+
+# LLM providers (swappable — Groq is the default free tier)
+groq>=0.11.0
+
+# Tools
+requests>=2.32
+
+# Working memory (used when WORKING_MEMORY=redis, e.g. in docker-compose)
+redis>=5.0
+
+# Persistence — SQLite by default; Postgres/Supabase via DATABASE_URL
+sqlalchemy>=2.0
+psycopg[binary]>=3.1
+
+# API (used from Phase 4 onward; safe to install now)
+fastapi>=0.111
+uvicorn[standard]>=0.30
+
+# Dev / tests
+pytest>=8.0

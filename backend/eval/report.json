@@ -1,0 +1,100 @@
+{
+  "tasks": 72,
+  "overall": {
+    "success_rate": 1,
+    "escalation_rate": 0,
+    "avg_cost_usd": 0.001197,
+    "avg_latency_ms": 11.94,
+    "total_cost_usd": 0.08615
+  },
+  "by_category": {
+    "competitive_analysis": {
+      "n": 10,
+      "success_rate": 1,
+      "escalation_rate": 0,
+      "avg_cost_usd": 0.001177,
+      "avg_latency_ms": 9.81,
+      "total_cost_usd": 0.011767
+    },
+    "content_generation": {
+      "n": 9,
+      "success_rate": 1,
+      "escalation_rate": 0,
+      "avg_cost_usd": 0.00121,
+      "avg_latency_ms": 15.92,
+      "total_cost_usd": 0.010894
+    },
+    "data_pipeline_debug": {
+      "n": 11,
+      "success_rate": 1,
+      "escalation_rate": 0,
+      "avg_cost_usd": 0.001187,
+      "avg_latency_ms": 9.33,
+      "total_cost_usd": 0.013061
+    },
+    "financial_reconciliation": {
+      "n": 10,
+      "success_rate": 1,
+      "escalation_rate": 0,
+      "avg_cost_usd": 0.001211,
+      "avg_latency_ms": 12.98,
+      "total_cost_usd": 0.012107
+    },
+    "incident_triage": {
+      "n": 11,
+      "success_rate": 1,
+      "escalation_rate": 0,
+      "avg_cost_usd": 0.001221,
+      "avg_latency_ms": 17.44,
+      "total_cost_usd": 0.013434
+    },
+    "research_synthesis": {
+      "n": 11,
+      "success_rate": 1,
+      "escalation_rate": 0,
+      "avg_cost_usd": 0.001156,
+      "avg_latency_ms": 7.0,
+      "total_cost_usd": 0.012716
+    },
+    "support_ticket": {
+      "n": 10,
+      "success_rate": 1,
+      "escalation_rate": 0,
+      "avg_cost_usd": 0.001217,
+      "avg_latency_ms": 11.66,
+      "total_cost_usd": 0.012171
+    }
+  },
+  "by_tier": {
+    "high": {
+      "n": 22,
+      "success_rate": 1,
+      "escalation_rate": 0,
+      "avg_cost_usd": 0.001199,
+      "avg_latency_ms": 11.4,
+      "total_cost_usd": 0.026371
+    },
+    "low": {
+      "n": 12,
+      "success_rate": 1,
+      "escalation_rate": 0,
+      "avg_cost_usd": 0.001189,
+      "avg_latency_ms": 11.52,
+      "total_cost_usd": 0.014268
+    },
+    "medium": {
+      "n": 38,
+      "success_rate": 1,
+      "escalation_rate": 0,
+      "avg_cost_usd": 0.001198,
+      "avg_latency_ms": 12.38,
+      "total_cost_usd": 0.045511
+    }
+  },
+  "memory": {
+    "family_tasks": 16,
+    "first_occurrence_recall_rate": 0.5,
+    "repeat_occurrence_recall_rate": 1,
+    "avg_recall_score_on_repeats": 0.762
+  }
+}

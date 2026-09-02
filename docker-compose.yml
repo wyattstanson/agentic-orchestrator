@@ -1,0 +1,37 @@
+# One-command full stack:  docker compose up --build
+# Then open http://localhost:3000  (backend at http://localhost:8000)
+#
+# Runs offline on the `echo` provider by default. For real answers, create a
+# .env next to this file with:  LLM_PROVIDER=groq  and  GROQ_API_KEY=...
+
+services:
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+
+  backend:
+    build: ./backend
+    ports:
+      - "8000:8000"
+    environment:
+      LLM_PROVIDER: ${LLM_PROVIDER:-echo}
+      GROQ_API_KEY: ${GROQ_API_KEY:-}
+      WORKING_MEMORY: redis
+      REDIS_URL: redis://redis:6379/0
+      MEMORY_BACKEND: local
+      # Empty -> SQLite in the container. Set to your Supabase Postgres URI
+      # in a .env next to this file to persist to Supabase.
+      DATABASE_URL: ${DATABASE_URL:-}
+    depends_on:
+      - redis
+
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        NEXT_PUBLIC_API_BASE: http://localhost:8000
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend

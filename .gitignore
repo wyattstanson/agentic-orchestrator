@@ -1,0 +1,37 @@
+# Dependencies
+**/node_modules/
+**/.venv/
+venv/
+
+# Builds
+**/.next/
+**/dist/
+**/build/
+**/out/
+*.tsbuildinfo
+next-env.d.ts
+
+# Python
+**/__pycache__/
+**/*.py[cod]
+.pytest_cache/
+.ruff_cache/
+
+# Runtime data (regenerated locally)
+backend/_memory/
+backend/_workspace/
+backend/_data/
+**/*.db
+**/*.db-wal
+**/*.db-shm
+
+# Secrets / env
+**/.env
+**/.env.local
+.env
+
+# Editor / OS
+.DS_Store
+.vscode/
+.idea/
+*.log

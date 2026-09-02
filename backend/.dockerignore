@@ -1,0 +1,14 @@
+.venv/
+__pycache__/
+**/__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+_memory/
+_workspace/
+_data/
+*.db
+*.db-wal
+*.db-shm
+.env
+eval/report.json
