@@ -7,8 +7,9 @@
 services:
   redis:
     image: redis:7-alpine
-    ports:
-      - "6379:6379"
+    # No host port published — only the backend needs Redis, and it reaches it
+    # over the internal network at redis:6379. Publishing 6379 to the host
+    # collides with any Redis already running on the machine.
 
   backend:
     build: ./backend

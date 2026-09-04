@@ -54,6 +54,19 @@ LLM_PROVIDER=groq
 GROQ_API_KEY=<free key from https://console.groq.com/keys>
 ```
 
+## Deploy on Render (both services)
+
+The whole stack runs on Render via [`render.yaml`](render.yaml) — a persistent
+web service for the FastAPI backend (Vercel can't host it: SSE streaming +
+threads + a blocking approval queue) and a Node web service for the frontend.
+
+1. **Render → New + → Blueprint** → connect this repo (repo root = `project15`).
+2. It creates `orchestrator-api` + `orchestrator-web`. On the API, set
+   `DATABASE_URL` = your **Supabase** URI (blank = ephemeral SQLite) and,
+   optionally, `GROQ_API_KEY` (+ flip `LLM_PROVIDER` to `groq`).
+3. When the API is live, copy its URL into the web service's
+   `NEXT_PUBLIC_API_BASE` and redeploy it. CORS already allows `*.onrender.com`.
+
 ## Run it manually (dev)
 
 ```bash

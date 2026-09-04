@@ -1,0 +1,48 @@
+# Render Blueprint — deploys the whole stack (backend API + frontend) on Render.
+#
+# This file sits at the repo root (the project15 folder, which is your git repo),
+# so Render's Blueprint finds it. Each service uses a rootDir into its subfolder.
+#
+# How to deploy:
+#   1. Render Dashboard → New + → Blueprint → connect this repo.
+#   2. It creates two web services. Set the secret env vars when prompted:
+#        orchestrator-api:  DATABASE_URL (your Supabase URI), GROQ_API_KEY (optional)
+#   3. After orchestrator-api is live, copy its URL
+#      (https://orchestrator-api.onrender.com) into orchestrator-web's
+#      NEXT_PUBLIC_API_BASE, then "Manual Deploy" the web service so the URL
+#      is baked into the build.
+#
+# CORS already allows any *.onrender.com origin, so no extra config needed there.
+
+services:
+  - type: web
+    name: orchestrator-api
+    runtime: python
+    plan: free
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.api.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.11.9"
+      - key: LLM_PROVIDER
+        value: echo            # set to "groq" once GROQ_API_KEY is added
+      - key: GROQ_API_KEY
+        sync: false            # optional; leave blank to run on echo
+      - key: DATABASE_URL
+        sync: false            # your Supabase Postgres URI (blank = ephemeral SQLite)
+      - key: CORS_ORIGINS
+        sync: false            # optional; *.onrender.com already allowed
+
+  - type: web
+    name: orchestrator-web
+    runtime: node
+    plan: free
+    rootDir: frontend
+    buildCommand: npm ci && npm run build
+    startCommand: npm run start -- -p $PORT
+    envVars:
+      - key: NODE_VERSION
+        value: "20"
+      - key: NEXT_PUBLIC_API_BASE
+        sync: false            # set to the orchestrator-api URL, then redeploy

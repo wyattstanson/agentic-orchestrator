@@ -21,9 +21,12 @@ from app.tools import build_default_registry
 
 app = FastAPI(title="Orchestrator API", version="0.1.0")
 
+_configured = [o.strip() for o in get_settings().cors_origins.split(",") if o.strip()]
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000", "http://127.0.0.1:3000"],
+    allow_origins=["http://localhost:3000", "http://127.0.0.1:3000", *_configured],
+    # Render + Vercel preview/prod URLs allowed out of the box.
+    allow_origin_regex=r"https://.*\.(onrender\.com|vercel\.app)",
     allow_methods=["*"],
     allow_headers=["*"],
 )

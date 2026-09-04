@@ -38,6 +38,11 @@ class Settings(BaseSettings):
     data_dir: str = Field(default="./_data")
     store_backend: str = Field(default="sql")  # sql | file
 
+    # Comma-separated allowed browser origins for the deployed frontend, e.g.
+    # "https://my-app.vercel.app". localhost is always allowed; *.vercel.app
+    # preview URLs are matched by regex in the API.
+    cors_origins: str = Field(default="")
+
     @property
     def resolved_database_url(self) -> str:
         if self.database_url:
